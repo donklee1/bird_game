@@ -3,6 +3,8 @@ import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
+import 'components/bird.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -36,12 +38,17 @@ class GameScreen extends StatelessWidget {
   }
 }
 
-class BirdGame extends FlameGame with TapCallbacks {
-  BirdGame() {}
+class BirdGame extends FlameGame with HasGameRef {
+  BirdGame() {
+  }
   @override
   Future<void> onLoad() async {
     super.onLoad();
+    final gameSize = gameRef.size;
+
+    Bird _Bird = Bird(Vector2(0, 0), Vector2(16, 16));
     Sprite spriteBg = await loadSprite('bg.png');
     add(SpriteComponent(sprite: spriteBg, autoResize: true));
+    add(_Bird);
   }
 }
