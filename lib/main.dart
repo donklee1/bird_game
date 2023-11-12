@@ -30,42 +30,18 @@ class GameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GameWidget(
-        game: RacingGame(),
+        game: BirdGame(),
       ),
     );
   }
 }
 
-class RacingGame extends FlameGame with TapCallbacks  {
-  late Player player;
+class BirdGame extends FlameGame with TapCallbacks {
+  BirdGame() {}
   @override
   Future<void> onLoad() async {
-    player = Player(
-      position: Vector2(size.x * 0.25, size.y - 20),
-    );
-    add(player);
+    super.onLoad();
+    Sprite spriteBg = await loadSprite('bg.png');
+    add(SpriteComponent(sprite: spriteBg, autoResize: true));
   }
-
-  @override
-  void onTapDown(TapDownEvent event) {
-    super.onTapDown(event);
-    if (!event.handled) {
-      final touchPoint = event.canvasPosition;
-      if (touchPoint.x > size.x / 2) {
-        player.position = Vector2(size.x * 0.75, size.y - 20);
-      } else {
-        player.position = Vector2(size.x * 0.25, size.y - 20);
-      }
-    }
-  }
-}
-
-class Player extends RectangleComponent {
-  static const playerSize = 96.0;
-  Player({required position})
-      : super(
-    position: position,
-    size: Vector2.all(playerSize),
-    anchor: Anchor.bottomCenter,
-  );
 }
