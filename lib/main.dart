@@ -29,16 +29,17 @@ class MyApp extends StatelessWidget {
 }
 
 class BirdGame extends FlameGame with HasGameRef {
-  BirdGame() {
-  }
+  BirdGame();
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    final gameSize = gameRef.size;
+    final gameSize = gameRef.size; //화면크기
 
-    Bird _Bird = Bird(Vector2(0, 0), Vector2(16, 16));
     Sprite spriteBg = await loadSprite('bg.png');
-    add(SpriteComponent(sprite: spriteBg, autoResize: true));
-    add(_Bird);
+    add(SpriteComponent(sprite: spriteBg, autoResize: false, position: Vector2(0,0), size: gameSize));
+    final birdSize = Vector2(BIRD_W, BIDR_H);
+    final birdPos  = Vector2(gameSize.x/2.0, gameSize.y/2.0);
+    add(Bird(birdPos, birdSize));
   }
+
 }
