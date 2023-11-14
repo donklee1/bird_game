@@ -2,7 +2,6 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-
 import 'components/bird.dart';
 import 'components/floor.dart';
 
@@ -38,10 +37,16 @@ class BirdGame extends FlameGame with HasGameRef {
 
     Sprite spriteBg = await loadSprite('bg.png');
     add(SpriteComponent(sprite: spriteBg, autoResize: false, position: Vector2(0,0), size: gameSize));
-    add(Floor());
+
     final birdSize = Vector2(BIRD_W, BIRD_H);
     final birdPos  = Vector2(gameSize.x/2.0, gameSize.y/2.0);
     add(Bird(birdPos, birdSize));
-  }
 
+    double xSize = gameSize.x * 2;
+    double ySize = xSize / 168 * 56; // 비율대로
+    final floorPos  = Vector2(0, 0);//gameSize.y - ySize*0.25);
+    final floorSize = Vector2(0, 0); // --> 안보이게 함 (변칙)
+    add(Floor(floorPos, floorSize));
+
+  }
 }

@@ -1,8 +1,8 @@
 import 'package:flame/components.dart';
 
-final double BIRD_W = 52;
-final double BIRD_H = 36.7;
-final double GRAVITY = 900;
+const double BIRD_W = 52;
+const double BIRD_H = 36.7;
+const double GRAVITY = 900;
 class Bird extends SpriteAnimationComponent with HasGameRef {
   Bird(
       Vector2 position,
@@ -32,12 +32,12 @@ class Bird extends SpriteAnimationComponent with HasGameRef {
     // TODO: implement update
     super.update(dt);
     speedY += GRAVITY * dt;
-    this.anchor = Anchor.center;
+    anchor = Anchor.center;
     this.y += (speedY * dt) / 2;
   }
 
   void onTap() {
-    this.speedY = -500;
+    speedY = -500;
     //FlameAudio.bgm.play('bubble_pop.mp3');
     //AudioPlayer('bubble_pop.mp3');
   }
