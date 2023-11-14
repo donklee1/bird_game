@@ -38,7 +38,6 @@ class Bird extends SpriteAnimationComponent with HasGameRef {
 
   void onTap() {
     speedY = -500;
-    //FlameAudio.bgm.play('bubble_pop.mp3');
-    //AudioPlayer('bubble_pop.mp3');
+    //audioPlayer('bubble_pop.mp3');
   }
 }
