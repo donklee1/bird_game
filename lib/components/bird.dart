@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
 
 final double BIRD_W = 52;
-final double BIDR_H = 36.7;
+final double BIRD_H = 36.7;
 final double GRAVITY = 900;
 class Bird extends SpriteAnimationComponent with HasGameRef {
   Bird(
