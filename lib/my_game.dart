@@ -4,20 +4,21 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
+//import 'package:audioplayers/audioplayers.dart'; //빌드문제
+//import 'package:just_audio/just_audio.dart';
 import 'components/bird.dart';
 import 'components/floor.dart';
 import 'components/score.dart';
-import 'game_state.dart';
+import 'consts/const.dart';
 import 'main.dart';
 
 class BirdGame extends FlameGame with HasGameRef, TapDetector {
-  late final AudioPlayer audioplayer = AudioPlayer();
-  late final _bird;
-  late final _floor;
-  late final _titles;
-  late final _pipeSet;
-  late final _score;
+  //late final AudioPlayer audioplayer = AudioPlayer();
+  late final Bird _bird;
+  late final Floor _floor;
+  late final Titles _titles;
+  late final PipeSet _pipeSet;
+  late final Score _score;
 
   BirdGame();
 
@@ -38,7 +39,7 @@ class BirdGame extends FlameGame with HasGameRef, TapDetector {
     _pipeSet = PipeSet();
     add(_pipeSet);
 
-    double xSize = gameSize.x * 2;
+    //double xSize = gameSize.x * 2;
     //double ySize = xSize / 168 * 56; // 비율대로
     final floorPos  = Vector2(0, 0);//gameSize.y - ySize*0.25);
     final floorSize = Vector2(0, 0); // --> 안보이게 함 (변칙)
@@ -56,12 +57,15 @@ class BirdGame extends FlameGame with HasGameRef, TapDetector {
   void update(double dt) {
     if (gameState == GameState.play) {
       if (checkIf2CompoCollision(_bird.toRect(), _floor.toRect())) {
+        playAudio('assets/audio/die.mp3');
         gameState = GameState.gameover;
       }
       if (checkIf2CompoCollision(_bird.toRect(), _pipeSet.getPipeUpRect())) {
+        playAudio('assets/audio/die.mp3');
         gameState = GameState.gameover;
       }
       if (checkIf2CompoCollision(_bird.toRect(), _pipeSet.getPipeDownRect())) {
+        playAudio('assets/audio/die.mp3');
         gameState = GameState.gameover;
       }
       checkIfBirdPassedPipe();
@@ -90,12 +94,18 @@ class BirdGame extends FlameGame with HasGameRef, TapDetector {
     return intersectRect.width > 2 && intersectRect.height > 2;
   }
 
-  void checkIfBirdPassedPipe() {
+  void checkIfBirdPassedPipe() async {
     if (_pipeSet.hasScored) return;
 
     if (_pipeSet.getPipeUpRect().right < _bird.toRect().left) {
+      playAudio('assets/audio/point.mp3');
       _score.addScore();
       _pipeSet.scoreUpdated();
     }
+  }
+
+  void playAudio(String audioFile) async {
+    await audioplayer.setAsset(audioFile);
+    await audioplayer.play();
   }
 }

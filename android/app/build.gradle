@@ -49,6 +49,8 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        // 64K 이상의 dex 파일처리
+        multiDexEnabled true
     }
 
     buildTypes {

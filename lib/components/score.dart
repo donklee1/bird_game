@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'dart:collection';
-import 'package:bird_game/consts/sprite_dimentions.dart';
+import 'package:bird_game/consts/num_sprite_sizeinfo.dart';
 import 'package:flame/components.dart';
 
 class Score extends Component with HasGameRef {
@@ -20,8 +20,8 @@ class Score extends Component with HasGameRef {
     numH = numW / 12.0 * 18.0;
     for (int i = 0; i<10; i++) {
       _num[i] = await gameRef.loadSprite('sprites.png',
-        srcPosition: SpritePositions.listNumber[i],
-        srcSize: Vector2(SpriteDimentions.numberWidth, SpriteDimentions.numberHeight),
+        srcPosition: NumSpritePos.listNumber[i],
+        srcSize: Vector2(NumSpriteSize.numberWidth, NumSpriteSize.numberHeight),
         );
     }
 

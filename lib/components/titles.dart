@@ -1,7 +1,6 @@
 import 'dart:ui';
-
-import 'package:bird_game/game_state.dart';
 import 'package:flame/components.dart';
+import '../consts/const.dart';
 
 class Titles extends Component with HasGameRef {
   late final Sprite _getReady;

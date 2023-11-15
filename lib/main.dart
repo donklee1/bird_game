@@ -1,18 +1,17 @@
 import 'package:flame/components.dart';
-import 'package:flame/events.dart';
-import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
-import 'components/bird.dart';
-import 'components/floor.dart';
-import 'game_state.dart';
+//import 'package:audioplayers/audioplayers.dart';
+import 'package:just_audio/just_audio.dart';
 import 'my_game.dart';
 
 late Sprite spriteSheet;
+late final AudioPlayer audioplayer;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  audioplayer = AudioPlayer();
   runApp(const MyApp());
 }
 

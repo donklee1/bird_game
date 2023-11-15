@@ -1,9 +1,7 @@
 import 'dart:ui';
 import 'dart:math';
-import 'package:bird_game/game_state.dart';
-import 'package:bird_game/options.dart';
+import 'package:bird_game/consts/const.dart';
 import 'package:flame/components.dart';
-import 'package:flutter/foundation.dart';
 
 class PipeSet extends Component with HasGameRef {
   late final Sprite _pipeUp;

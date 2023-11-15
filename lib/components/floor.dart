@@ -1,8 +1,6 @@
 import 'dart:ui';
-import 'package:bird_game/options.dart';
+import 'package:bird_game/consts/const.dart';
 import 'package:flame/components.dart';
-
-import '../game_state.dart';
 
 class Floor extends SpriteComponent with HasGameRef {
   double xPos = 0;
