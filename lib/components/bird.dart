@@ -1,6 +1,5 @@
 import 'package:bird_game/consts/const.dart';
 import 'package:flame/components.dart';
-
 import '../main.dart';
 
 const double BIRD_W = 52;

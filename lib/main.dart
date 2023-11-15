@@ -2,7 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
-//import 'package:audioplayers/audioplayers.dart';
+//import 'package:audioplayers/audioplayers.dart'; //빌드 gradle 문제있음
 import 'package:just_audio/just_audio.dart';
 import 'my_game.dart';
 

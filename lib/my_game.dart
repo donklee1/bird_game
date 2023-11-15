@@ -4,8 +4,6 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-//import 'package:audioplayers/audioplayers.dart'; //빌드문제
-//import 'package:just_audio/just_audio.dart';
 import 'components/bird.dart';
 import 'components/floor.dart';
 import 'components/score.dart';
@@ -13,7 +11,6 @@ import 'consts/const.dart';
 import 'main.dart';
 
 class BirdGame extends FlameGame with HasGameRef, TapDetector {
-  //late final AudioPlayer audioplayer = AudioPlayer();
   late final Bird _bird;
   late final Floor _floor;
   late final Titles _titles;
