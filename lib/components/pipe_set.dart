@@ -48,10 +48,7 @@ class PipeSet extends Component with HasGameRef {
         if (pipePos < -pipeW) {
           pipePos = gameRef.size.x;
           hasScored = false;
-          pipeLevel = Random().nextInt(5); //1,2,3,4,5
-          if (pipeLevel == 0) {
-            pipeLevel = 6;
-          }
+          pipeLevel = Random().nextInt(3) + 1; //1,2,3
         }
         pipePos -= dt * 30 + GAME_SPEED;
         break;

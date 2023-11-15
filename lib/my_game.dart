@@ -80,6 +80,7 @@ class BirdGame extends FlameGame with HasGameRef, TapDetector {
         break;
       case GameState.gameover:
         gameState = GameState.pause;
+        _score.resetScore();
         break;
     }
   }
@@ -89,13 +90,12 @@ class BirdGame extends FlameGame with HasGameRef, TapDetector {
     return intersectRect.width > 2 && intersectRect.height > 2;
   }
 
-  bool checkIfBirdPassedPipe() {
-    if (_pipeSet.hasScored) return false;
+  void checkIfBirdPassedPipe() {
+    if (_pipeSet.hasScored) return;
 
     if (_pipeSet.getPipeUpRect().right < _bird.toRect().left) {
+      _score.addScore();
       _pipeSet.scoreUpdated();
-      return true;
     }
-    return false;
   }
 }
