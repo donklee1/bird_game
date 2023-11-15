@@ -1,3 +1,6 @@
+import 'package:bird_game/game_state.dart';
+import 'package:bird_game/my_game.dart';
+import 'package:bird_game/options.dart';
 import 'package:flame/components.dart';
 
 const double BIRD_W = 52;
@@ -29,15 +32,36 @@ class Bird extends SpriteAnimationComponent with HasGameRef {
   double speedY = 0.0;
   @override
   void update(double dt) {
-    // TODO: implement update
     super.update(dt);
-    speedY += GRAVITY * dt;
     anchor = Anchor.center;
-    this.y += (speedY * dt) / 2;
+
+    switch (gameState) {
+      case GameState.pause:
+        this.y = gameRef.size.y * 0.4;
+        this.x = gameRef.size.x / 2;
+        break;
+      case GameState.play:
+        speedY += (GRAVITY + GAME_SPEED) * dt;
+        this.y += (speedY * dt) / 2;
+        break;
+      case GameState.gameover:
+        break;
+    }
   }
 
   void onTap() {
     speedY = -500;
-    //audioPlayer('bubble_pop.mp3');
+    switch (gameState) {
+      case GameState.pause:
+        speedY = -500;
+      //await audioplayer.play(UrlSource('bubble_pop.mp3'));
+        break;
+      case GameState.play:
+        speedY = -500;
+        //await audioplayer.play(UrlSource('bubble_pop.mp3'));
+        break;
+      case GameState.gameover:
+        break;
+    }
   }
 }
